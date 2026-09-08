@@ -18,17 +18,18 @@ public class Library {
         books.remove(bookId);
     }
 
-    public void bookExists(Book book, Member member){
+    public boolean bookExists(Book book, Member member){
 
         BookKeeper bookKeeper = new BookKeeper(books);
         String bookId = book.getBookId();
         boolean find = bookKeeper.searchBook(bookId);
         if(!find){
-            return;
+            return false;
         }
 
         bookKeeper.borrowBook(member,book);
 
+        return true;
     }
 
 }
